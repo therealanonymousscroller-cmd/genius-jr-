@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f3f8"><title>Lyric — Find the words</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:#24232b;background:#f4f3f8;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#fff 0,#f5f3fa 55%,#eeedf4 100%);padding:30px 20px 60px}
+.wrap{max-width:920px;margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;margin:8px 0 78px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.5px}.mark{width:35px;height:35px;border-radius:11px;background:#24232b;color:#fff;display:grid;place-items:center;font-size:19px;box-shadow:0 5px 15px #24232b24}
+.pill{font-size:12px;color:#777481;background:#fff9;border:1px solid #e9e7ef;border-radius:30px;padding:8px 12px}
+.hero{text-align:center;max-width:700px;margin:0 auto 34px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:700;color:#918b9e}.hero h1{font-size:clamp(40px,7vw,65px);letter-spacing:-3.8px;line-height:1.03;margin:17px 0 14px;font-weight:750}.hero h1 span{color:#8b78d8}.hero p{color:#817d8a;font-size:16px;line-height:1.6;margin:0}
+.window{max-width:700px;margin:0 auto;background:#fff;border:1px solid #e6e3ed;border-radius:19px;overflow:hidden;box-shadow:0 25px 75px #342b5415,0 3px 10px #342b5408}
+.traffic{height:45px;background:#fbfafc;border-bottom:1px solid #efedf2;display:flex;align-items:center;padding:0 16px;gap:7px}.dot{width:11px;height:11px;border-radius:50%}.red{background:#ff6058}.yellow{background:#febc2e}.green{background:#28c840}.window-label{margin:auto;font-size:11px;color:#aaa6b1;transform:translateX(-25px)}
+form{padding:27px}.label{font-size:12px;font-weight:650;color:#625e6d;margin:0 0 10px 2px;display:block}
+.entry{display:flex;align-items:center;gap:10px;border:1px solid #e6e2ed;border-radius:13px;padding:6px 7px 6px 15px;background:#fcfbfd;transition:.2s}.entry:focus-within{border-color:#9b89e1;box-shadow:0 0 0 4px #9b89e11a}.entry input{border:0;outline:0;background:transparent;min-width:0;flex:1;font:inherit;font-size:15px;padding:12px 0;color:#24232b}.entry input::placeholder{color:#aaa6b1}
+button{border:0;border-radius:10px;background:#282631;color:#fff;padding:13px 19px;font:inherit;font-size:13px;font-weight:650;cursor:pointer;white-space:nowrap;transition:transform .15s,background .15s}button:hover{background:#51466f;transform:translateY(-1px)}button:disabled{opacity:.55;cursor:wait;transform:none}
+.hint{font-size:11px;color:#a09ba8;margin:12px 2px 0}.examples{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px auto 0}.example{font-size:11px;color:#827d8d;border:1px solid #e8e5ed;border-radius:30px;padding:7px 11px;background:#ffffffa8;cursor:pointer}.example:hover{border-color:#b9addf;color:#66569b}
+#status{display:none;margin:17px 0 0;padding:12px 14px;border-radius:10px;background:#f5f3fa;color:#746b8b;font-size:13px;line-height:1.5}#status.show{display:block}#status.error{background:#fff1f0;color:#a34b46}
+.results{max-width:700px;margin:22px auto 0;display:none}.results.show{display:block}.result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin:0 0 12px}.result-head h2{font-size:19px;letter-spacing:-.5px;margin:0 0 5px}.meta{font-size:12px;color:#898493}.source{font-size:10px;color:#7b7195;background:#eeeaf8;padding:6px 9px;border-radius:20px;white-space:nowrap}
+.lyrics-card{background:#fff;border:1px solid #e8e5ed;border-radius:16px;padding:24px 27px;box-shadow:0 12px 35px #342b5409}.lyrics{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.9;color:#3b3943;margin:0;font-family:inherit}.empty{color:#898493;font-size:14px;line-height:1.6}
+.footer{text-align:center;margin:40px 0 0;color:#aaa5b1;font-size:11px}.footer a{color:#81769f;text-decoration:none}
+@media(max-width:560px){body{padding:18px 14px 40px}.top{margin:5px 0 58px}.hero h1{letter-spacing:-2.5px}.hero p{font-size:14px}.window{border-radius:15px}form{padding:19px}.entry{flex-wrap:wrap}.entry input{flex-basis:100%;padding:11px 0 4px}.entry button{width:100%}.lyrics-card{padding:20px}.result-head{align-items:center}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="mark">♪</div><span>lyric.</span></div><div class="pill">A little more music, a little less guessing</div></header>
+<section class="hero"><div class="eyebrow">Your music, in words</div><h1>Every song has a <span>story.</span></h1><p>Find the lyrics you're looking for. Search by song, artist, a natural-language request, or a YouTube link.</p></section>
+<section class="window" aria-label="Song search"><div class="traffic"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i><span class="window-label">lyric — song finder</span></div>
+<form id="searchForm"><label class="label" for="songInput">WHAT ARE WE LISTENING TO?</label><div class="entry"><input id="songInput" autocomplete="off" placeholder="Try “Blinding Lights by The Weeknd”…" required><button id="submitBtn" type="submit">Get lyrics <span aria-hidden="true">↗</span></button></div><p class="hint">Song + artist works best. You can also paste a YouTube video link.</p><div class="examples"><button class="example" type="button" data-value="Blinding Lights by The Weeknd">Blinding Lights</button><button class="example" type="button" data-value="Can you find the lyrics to Yellow by Coldplay">Natural language</button><button class="example" type="button" data-value="https://www.youtube.com/watch?v=dQw4w9WgXcQ">YouTube link</button></div><div id="status" role="status" aria-live="polite"></div></form></section>
+<section class="results" id="results"><div class="result-head"><div><h2 id="songTitle">Lyrics</h2><div class="meta" id="songMeta"></div></div><span class="source" id="sourceTag">RESULT</span></div><div class="lyrics-card"><pre class="lyrics" id="lyricsText"></pre><div class="empty" id="emptyLyrics" hidden>No lyrics were returned for this song. Try adding the artist's name or checking the spelling.</div></div></section>
+<footer class="footer">Made for the love of music · <a href="/health" target="_blank" rel="noreferrer">API status</a></footer>
+</main>
+<script>
+const form=document.getElementById('searchForm'), input=document.getElementById('songInput'), button=document.getElementById('submitBtn'), statusBox=document.getElementById('status'), results=document.getElementById('results');
+document.querySelectorAll('[data-value]').forEach(el=>el.addEventListener('click',()=>{input.value=el.dataset.value;input.focus()}));
+form.addEventListener('submit',async event=>{
+ event.preventDefault();const query=input.value.trim();if(!query)return;
+ button.disabled=true;button.textContent='Finding…';statusBox.className='show';statusBox.textContent='Looking up the song and checking available lyric sources…';results.classList.remove('show');
+ try{
+  const response=await fetch('/lyrics',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input:query})});
+  const data=await response.json();if(!response.ok)throw new Error(data.details||data.error||'Something went wrong. Please try again.');
+  const info=data.identification||{};document.getElementById('songTitle').textContent=data.title||info.title||'Lyrics';
+  document.getElementById('songMeta').textContent=[data.artist||info.artist,data.album,data.releaseDate].filter(Boolean).join(' · ');
+  const lyrics=data.lyrics||'';document.getElementById('lyricsText').textContent=lyrics;document.getElementById('emptyLyrics').hidden=!!lyrics;
+  document.getElementById('sourceTag').textContent=data.sources?.lyrics?('SOURCE: '+data.sources.lyrics.toUpperCase()):'NO SOURCE';
+  statusBox.className='';statusBox.textContent='';results.classList.add('show');
+  if(!lyrics)statusBox.className='show';
+ }catch(error){statusBox.className='show error';statusBox.textContent=error.message; }
+ finally{button.disabled=false;button.innerHTML='Get lyrics <span aria-hidden="true">↗</span>';}
+});
+</script></body></html>
