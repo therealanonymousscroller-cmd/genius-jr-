@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import { config } from './config.js';
 import { searchGenius, scrapeGeniusPage } from './services/genius.js';
@@ -6,19 +8,12 @@ import { getLyrics } from './services/lyrics.js';
 import { resolveSongInput } from './services/input.js';
 
 const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json({ limit: '32kb' }));
 
-app.get('/', (_req, res) => res.json({
-  name: 'Genius Lyrics API',
-  status: 'running',
-  examples: {
-    text: '/lyrics?q=Blinding%20Lights%20by%20The%20Weeknd',
-    youtube: '/lyrics?q=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DVIDEO_ID',
-    post: 'POST /lyrics with JSON { "input": "Song title by Artist" }'
-  },
-  endpoints: ['/health', '/search?q=artist%20song', '/lyrics?q=... or ?title=...&artist=...', 'POST /lyrics', 'POST /scrape']
-}));
+app.get('/', (_req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
