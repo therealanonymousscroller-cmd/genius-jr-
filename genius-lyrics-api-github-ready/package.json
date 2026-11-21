@@ -1,0 +1,20 @@
+{
+  "name": "genius-lyrics-api",
+  "version": "1.0.0",
+  "description": "A small Node.js API for searching Genius and retrieving available lyrics and synced lyrics from LRCLIB.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "https-proxy-agent": "^7.0.6",
+    "socks-proxy-agent": "^8.0.5"
+  }
+}
